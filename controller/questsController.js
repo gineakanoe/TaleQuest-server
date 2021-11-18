@@ -12,7 +12,7 @@ router.get('/practice', /*validateJWT,*/ (req, res) => {
 router.post('/create', validateJWT, async (req,res) => {
     const {entry, type, timeLimit} = req.body.quests;
     const {id} = req.user;
-    const talesEntry = {
+    const questsEntry = {
         entry,
         type,
         timeLimit,
@@ -26,6 +26,7 @@ router.post('/create', validateJWT, async (req,res) => {
         res.status(500).json({
             message: `The quest failed to post: ${err}`});
     }
+    // QuestsModel.create(questsEntry)
 });
 
 
@@ -48,7 +49,7 @@ router.get('/mine', validateJWT, async (req, res) => {
 
 //* Update
 router.put('/update/:entryId', validateJWT, async (req, res) => {
-    const {entry, type, timeLimit} = req.body.tales;
+    const {entry, type, timeLimit} = req.body.quests;
     const questId = req.params.entryId;
     const userId = req.user.id;
 
