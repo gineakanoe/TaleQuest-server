@@ -9,9 +9,10 @@ router.get('/practice', validateJWT, (req, res) => {
 
 //* Create
 router.post('/create', validateJWT, async (req,res) => {
-    const {entry, genre, keywords} = req.body.tales;
+    const {title, entry, genre, keywords} = req.body.tales;
     const {id} = req.user;
     const talesEntry = {
+        title,
         entry,
         genre,
         keywords,
@@ -48,7 +49,7 @@ router.get('/mine', validateJWT, async (req, res) => {
 
 //* Update
 router.put('/update/:entryId', validateJWT, async (req, res) => {
-    const {entry, genre, keywords} = req.body.tales;
+    const {title, entry, genre, keywords} = req.body.tales;
     const taleId = req.params.entryId;
     const userId = req.user.id;
 
@@ -59,6 +60,7 @@ router.put('/update/:entryId', validateJWT, async (req, res) => {
         }
     };
     const updatedTale = {
+        title: title,
         entry: entry,
         genre: genre,
         keywords: keywords

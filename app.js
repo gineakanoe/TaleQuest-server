@@ -19,14 +19,11 @@ app.use('/quests', controllers.questsController);
 // });
 
 dbConnection.authenticate()
-    .then(() => dbConnection.sync())
+    .then(() => dbConnection.sync(/*{force: true}*/))
     .then(() => {
-        app.listen(4000, () => {
-            console.log(`[Server]: App is listening on 4000.`);
+        app.listen(process.env.PORT, () => {
+            console.log(`[Server]: App is listening on ${process.env.PORT}.`);
         });
-        // app.listen(process.env.PORT, () => {
-        //     console.log(`[Server]: App is listening on ${process.env.PORT}.`);
-        // });
     })
     .catch((err) => {
         console.log(`[Server]: Server crashed. ${err}`);

@@ -2,6 +2,10 @@ const {DataTypes} = require('sequelize');
 const db = require('../db');
 
 const Tales = db.define('tales', {
+    title: {
+        type: DataTypes.STRING,
+        allowNull: false
+    },
     entry: {
         type: DataTypes.STRING,
         allowNull: false
