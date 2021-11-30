@@ -2,12 +2,12 @@ const {DataTypes} = require('sequelize');
 const db = require('../db');
 
 const Tales = db.define('tales', {
-    id: {
-        type: DataTypes.UUID,
-        primaryKey: true,
-        defaultValue: DataTypes.UUIDV4,
-        allowNull: false,
-    },
+    // id: {
+    //     type: DataTypes.UUID,
+    //     primaryKey: true,
+    //     defaultValue: DataTypes.UUIDV4,
+    //     allowNull: false,
+    // },
     title: {
         type: DataTypes.STRING,
         allowNull: false
@@ -24,10 +24,9 @@ const Tales = db.define('tales', {
         type: DataTypes.STRING,
         allowNull: false
     },
-
-    // owner: {
-    //     type: DataTypes.INTEGER
-    // }
+    owner: {
+        type: DataTypes.INTEGER
+    }
 });
 
 module.exports = Tales;

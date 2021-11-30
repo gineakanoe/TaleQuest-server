@@ -1,70 +1,69 @@
+//? Orig before associations
 require('dotenv').config();
-
-// imports
 const Express = require('express');
-const dbConnection = require('./db');
-const controllers = require('./controller');
-const middleware = require('./middleware');
-
-// instantation
 const app = Express();
+const dbConnection = require('./db');
 
-// middleware
-app.use(middleware.CORS);
+app.use(require('./middleware/headers'));
+
+const controllers = require('./controller');
+
 app.use(Express.json());
+app.use('/user', controllers.userController);
 
-// endpoints
-app.use('/auth', controllers.usersController);
-app.use(middleware.validateSession);
 app.use ('/tales', controllers.talesController);
 app.use('/quests', controllers.questsController);
-app.use('/posts', controllers.postsController);
-app.use('/comments', controllers.commentsController);
 
-// database auth & sync
-try {
-    dbConnection.authenticate()
-        .then(async() => await dbConnection.sync(/*{force: true}*/))
-        .then(() => {
-            app.listen(process.env.PORT, () => {
-                console.log(`[Server]: App is listening on ${process.env.PORT}.`);
-            });
+
+// app.use('/test', (req, res) => {
+//     res.send('This is a message from the test endpoint on the server!')
+// });
+
+dbConnection.authenticate()
+    .then(() => dbConnection.sync(/*{force: true}*/))
+    .then(() => {
+        app.listen(process.env.PORT, () => {
+            console.log(`[Server]: App is listening on ${process.env.PORT}.`);
         });
-}catch(err) {
+    })
+    .catch((err) => {
         console.log(`[Server]: Server crashed. ${err}`);
-};
+    });
 
 
+//? Code With database associations - did work, but client isn't talking to some of it
+// require('dotenv').config();
 
-
-    //? Orig before associations
-//     require('dotenv').config();
+// // imports
 // const Express = require('express');
-// const app = Express();
 // const dbConnection = require('./db');
-
-// app.use(require('./middleware/headers'));
-
 // const controllers = require('./controller');
+// const middleware = require('./middleware');
 
+// // instantation
+// const app = Express();
+
+// // middleware
+// app.use(middleware.CORS);
 // app.use(Express.json());
-// app.use('/user', controllers.userController);
 
+// // endpoints
+// app.use('/auth', controllers.usersController);
+// app.use(middleware.validateSession);
 // app.use ('/tales', controllers.talesController);
 // app.use('/quests', controllers.questsController);
+// app.use('/posts', controllers.postsController);
+// app.use('/comments', controllers.commentsController);
 
-
-// // app.use('/test', (req, res) => {
-// //     res.send('This is a message from the test endpoint on the server!')
-// // });
-
-// dbConnection.authenticate()
-//     .then(() => dbConnection.sync(/*{force: true}*/))
-//     .then(() => {
-//         app.listen(process.env.PORT, () => {
-//             console.log(`[Server]: App is listening on ${process.env.PORT}.`);
+// // database auth & sync
+// try {
+//     dbConnection.authenticate()
+//         .then(async() => await dbConnection.sync(/*{force: true}*/))
+//         .then(() => {
+//             app.listen(process.env.PORT, () => {
+//                 console.log(`[Server]: App is listening on ${process.env.PORT}.`);
+//             });
 //         });
-//     })
-//     .catch((err) => {
+// }catch(err) {
 //         console.log(`[Server]: Server crashed. ${err}`);
-//     });
+// };
