@@ -12,20 +12,18 @@ const Quests = db.define('quests', {
         type: DataTypes.STRING,
         allowNull: false
     },
-
     type: {
         type: DataTypes.STRING,
         allowNull: false
     },
-
     timeLimit: {
         type: DataTypes.STRING,
         allowNull: false
     },
-
-    owner: {
-        type: DataTypes.INTEGER
-    }
+   
+    // owner: {
+    //     type: DataTypes.INTEGER
+    // }
 });
 
 module.exports = Quests;

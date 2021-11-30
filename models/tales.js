@@ -16,20 +16,18 @@ const Tales = db.define('tales', {
         type: DataTypes.STRING,
         allowNull: false
     },
-
     genre: {
         type: DataTypes.STRING,
         allowNull: false
     },
-
     keywords: {
         type: DataTypes.STRING,
         allowNull: false
     },
 
-    owner: {
-        type: DataTypes.INTEGER
-    }
+    // owner: {
+    //     type: DataTypes.INTEGER
+    // }
 });
 
 module.exports = Tales;

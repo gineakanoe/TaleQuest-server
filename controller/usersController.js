@@ -89,7 +89,17 @@ router.get('/userinfo', async (req, res) => {
         await models.UsersModel.findAll({
             include: [{
                 model: models.PostsModel,
+                include: [{
+                    model: models.CommentsModel
+                }]
+            }],
+            include: [{
                 model: models.TalesModel,
+                include: [{
+                    model: models.CommentsModel
+                }]
+            }],
+            include: [{
                 model: models.QuestsModel,
                 include: [{
                     model: models.CommentsModel

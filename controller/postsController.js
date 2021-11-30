@@ -1,7 +1,8 @@
 const router = require('express').Router();
 const {models} = require('../models');
 
-router.get('/practice', /*validateJWT,*/ (req, res) => {
+// Test
+router.get('/practice', (req, res) => {
     res.send('Hey! This is the practice route for posts!  Good job!') 
 });
 
