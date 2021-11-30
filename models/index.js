@@ -1,29 +1,37 @@
 const db = require('../db');
 
-const UserModel = require('./user');
+const UsersModel = require('./users');
 const TalesModel = require('./tales');
 const QuestsModel = require('./quests');
 
 //database associations
-const UsersModel = require('./users');
 const PostsModel = require('./posts');
 const CommentsModel = require('./comments');
 
 //associations
 UsersModel.hasMany(PostsModel);
+UsersModel.hasMany(TalesModel);
+UsersModel.hasMany(QuestsModel);
 UsersModel.hasMany(CommentsModel);
 
 PostsModel.belongsTo(UsersModel);
+TalesModel.belongsTo(UsersModel);
+QuestsModel.belongsTo(UsersModel);
 PostsModel.hasMany(CommentsModel);
+TalesModel.hasMany(CommentsModel);
+QuestsModel.hasMany(CommentsModel);
 
 CommentsModel.belongsTo(PostsModel);
+CommentsModel.belongsTo(TalesModel);
+CommentsModel.belongsTo(QuestsModel);
 
 module.exports = {
-    UserModel, TalesModel, QuestsModel,
     dbConnection: db,
     models: {
-        UsersModel,
         PostsModel,
-        CommentsModel
+        CommentsModel,
+        UsersModel, 
+        TalesModel, 
+        QuestsModel
     }
 };

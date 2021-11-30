@@ -1,7 +1,7 @@
-const { DataTypes } = require("sequelize");
-const db = require("../db");
+const { DataTypes } = require('sequelize');
+const db = require('../db');
 
-const Posts = db.define("posts", {
+const Posts = db.define('posts', {
   id: {
     type: DataTypes.UUID,
     primaryKey: true,
