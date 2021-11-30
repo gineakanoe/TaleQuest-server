@@ -1,5 +1,5 @@
 module.exports = {
-    usersController: require('./usersController'),
+    userController: require('./userController'),
     talesController: require('./talesController'),
     questsController: require('./questsController'),
     postsController: require('./postsController'),
