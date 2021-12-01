@@ -83,6 +83,42 @@ router.post('/login', async (req, res) => {
     }
 });
 
+// router.get('/userinfo', async (req, res) => {
+//     try {
+//         await models.UsersModel.findAll({
+//             include: [{
+//                 model: models.PostsModel,
+//                 include: [{
+//                     model: models.CommentsModel
+//                 }]
+//             }],
+//             include: [{
+//                 model: models.TalesModel,
+//                 include: [{
+//                     model: models.CommentsModel
+//                 }]
+//             }],
+//             include: [{
+//                 model: models.QuestsModel,
+//                 include: [{
+//                     model: models.CommentsModel
+//                 }]
+//             }]
+//         })
+//         .then(
+//             users => {
+//                 res.status(200).json({
+//                     users: users
+//                 });
+//             }
+//         )
+//     } catch (err) {
+//         res.status(500).json({
+//             error: `Failed to retrieve users: ${err}`
+//         });
+//     };
+// });
+
 
 module.exports = router;
 
